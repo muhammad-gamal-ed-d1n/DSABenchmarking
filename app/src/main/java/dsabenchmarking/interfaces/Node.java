@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public abstract class Node {
     Node left, right, parent;
+    int value;
 }

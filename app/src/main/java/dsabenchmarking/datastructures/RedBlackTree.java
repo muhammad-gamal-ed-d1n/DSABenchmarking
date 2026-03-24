@@ -1,11 +1,12 @@
 package dsabenchmarking.datastructures;
 
+import dsabenchmarking.enumeration.Color;
 import dsabenchmarking.interfaces.BSTInterface;
-import dsabenchmarking.interfaces.Node;
+import dsabenchmarking.interfaces.ColoredNode;
 
 public class RedBlackTree implements BSTInterface {
 
-    private Node root;
+    private ColoredNode root;
     private int n;
 
     public RedBlackTree() {
@@ -15,7 +16,33 @@ public class RedBlackTree implements BSTInterface {
 
     @Override
     public boolean insert(int v) {
-        // TODO Auto-generated method stub
+
+        if (root == null) {
+            root = new RBNode(null, null, null, v, Color.BLACK);
+            n = 1;
+            return true;
+        }
+
+        ColoredNode curr = root, pos;
+
+        //ge parent node 'pos'
+        while (curr != null) {
+            pos = curr;
+            if (curr.getValue() > v) {
+                curr = curr.getLeft();
+            } else if (curr.getValue() < v) {
+                curr = curr.getRight();
+            } else {
+                return false;
+            }
+        }
+
+        // determine position of inserted node
+            //TODO
+        
+
+        //handle cases
+
         throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
 
@@ -49,8 +76,8 @@ public class RedBlackTree implements BSTInterface {
         throw new UnsupportedOperationException("Unimplemented method 'size'");
     }
 
-    private void rightRotation(Node parent) {
-        Node child = parent.getLeft();
+    private void rightRotation(ColoredNode parent) {
+        ColoredNode child = parent.getLeft();
 
         //set the parent's left subtree to the child's right subtree
         parent.setLeft(child.getRight());
@@ -73,8 +100,8 @@ public class RedBlackTree implements BSTInterface {
         parent.setParent(child);
     }
 
-    private void leftRotation(Node parent) {
-        Node child = parent.getRight();
+    private void leftRotation(ColoredNode parent) {
+        ColoredNode child = parent.getRight();
 
         //set the parent's right subtree to the child's left subtree
         parent.setRight(child.getLeft());
