@@ -1,4 +1,4 @@
-package main.java.dsabenchmarking.enumeration;
+package dsabenchmarking.enumeration;
 
 public enum Color {
     RED, BLACK;

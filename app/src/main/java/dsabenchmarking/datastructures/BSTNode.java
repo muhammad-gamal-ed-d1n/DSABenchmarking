@@ -1,13 +1,11 @@
 package dsabenchmarking.datastructures;
 
-import dsabenchmarking.enumeration.Color;
 import dsabenchmarking.interfaces.Node;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RBNode extends Node {
+public class BSTNode {
     private Node left, right, parent;
-    private Color color;
 }
