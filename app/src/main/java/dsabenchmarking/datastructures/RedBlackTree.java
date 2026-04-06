@@ -16,21 +16,20 @@ public class RedBlackTree implements BSTInterface {
         this.n = 0;
     }
 
-    // TODO: should refactor all this to point to the NIL node
     @Override
     public boolean insert(int v) {
         boolean ll = false, lr = false, rl = false, rr = false, l = false, r = false;
 
         if (root == null) {
-            root = new RBNode(null, null, null, v, Color.BLACK);
+            root = new RBNode(NIL, NIL, null, v, Color.BLACK);
             n = 1;
             return true;
         }
 
         ColoredNode curr = root, parent = null;
 
-        // ge parent node
-        while (curr != null) {
+        // get parent node
+        while (curr != NIL) {
             parent = curr;
             if (curr.getValue() > v) {
                 curr = curr.getLeft();
@@ -42,7 +41,7 @@ public class RedBlackTree implements BSTInterface {
         }
 
         // determine position of inserted node
-        ColoredNode newNode = new RBNode(null, null, null, v, Color.RED);
+        ColoredNode newNode = new RBNode(NIL, NIL, null, v, Color.RED);
         if (parent.getValue() > v) {
             parent.setLeft(newNode);
             l = true;
@@ -69,7 +68,7 @@ public class RedBlackTree implements BSTInterface {
                 leftRotation(parent);
             }
 
-            if (parent.getParent().getRight() != null && parent.getParent().getRight().getColor() == Color.RED) {
+            if (parent.getParent().getRight() != NIL && parent.getParent().getRight().getColor() == Color.RED) {
                 // set the parent's and uncle's colors to black and traverse upwards
                 parent.setColor(Color.BLACK);
                 parent.getParent().getRight().setColor(Color.BLACK);
@@ -98,7 +97,7 @@ public class RedBlackTree implements BSTInterface {
                 rightRotation(parent);
             }
 
-            if (parent.getParent().getLeft() != null && parent.getParent().getLeft().getColor() == Color.RED) {
+            if (parent.getParent().getLeft() != NIL && parent.getParent().getLeft().getColor() == Color.RED) {
                 // set the parent's and uncle's colors to black and traverse upwards
                 parent.setColor(Color.BLACK);
                 parent.getParent().getLeft().setColor(Color.BLACK);
