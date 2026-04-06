@@ -3,3 +3,8 @@
 
 # Ignore Gradle build output directory
 build
+
+#ignore printer
+app/src/main/java/dsabenchmarking/printer/Printer.java
+app/src/main/java/dsabenchmarking/printer/ASTPrinter.java
+app/src/main/java/dsabenchmarking/printer/BSTPrinter.java

@@ -11,24 +11,29 @@ public class RedBlackTree implements BSTInterface {
     private ColoredNode NIL;
 
     public RedBlackTree() {
-        NIL.setColor(Color.BLACK);
+        NIL = new RBNode(null, null, null, 0, Color.BLACK);
         this.root = NIL;
         this.n = 0;
     }
 
+    public ColoredNode getRoot() {
+        return root;
+    }
+
+    public ColoredNode getNIL() {
+        return NIL;
+    }
+
     @Override
     public boolean insert(int v) {
-        boolean ll = false, lr = false, rl = false, rr = false, l = false, r = false;
-
-        if (root == null) {
+        // if tree is empty insert at root
+        if (root == NIL) {
             root = new RBNode(NIL, NIL, null, v, Color.BLACK);
-            n = 1;
             return true;
         }
 
-        ColoredNode curr = root, parent = null;
-
-        // get parent node
+        // else we find the node's position
+        ColoredNode curr = root, parent = root;
         while (curr != NIL) {
             parent = curr;
             if (curr.getValue() > v) {
@@ -36,89 +41,71 @@ public class RedBlackTree implements BSTInterface {
             } else if (curr.getValue() < v) {
                 curr = curr.getRight();
             } else {
+                //node already exists
                 return false;
             }
         }
 
-        // determine position of inserted node
-        ColoredNode newNode = new RBNode(NIL, NIL, null, v, Color.RED);
+        // we place the node at its appropriate position relative to its parent
+        ColoredNode child = new RBNode(NIL, NIL, parent, v, Color.RED);
         if (parent.getValue() > v) {
-            parent.setLeft(newNode);
-            l = true;
+            parent.setLeft(child);
         } else {
-            parent.setRight(newNode);
-            r = true;
+            parent.setRight(child);
         }
 
-        // determine cases
-        if (parent.getParent().getLeft() == parent && l) {
-            ll = true;
-        } else if (parent.getParent().getLeft() == parent && r) {
-            lr = true;
-        } else if (parent.getParent().getRight() == parent && l) {
-            rl = true;
-        } else {
-            rr = true;
-        }
+        // if parent is black, then no violation, return
+        if (parent.getColor() == Color.BLACK) return true;
 
-        // handle cases
-        if (ll || lr) {
+        while(true) {
 
-            if (lr) {
-                leftRotation(parent);
-            }
-
-            if (parent.getParent().getRight() != NIL && parent.getParent().getRight().getColor() == Color.RED) {
-                // set the parent's and uncle's colors to black and traverse upwards
+            // handle some terminating conditions
+            if (parent == null) break;
+            if (parent.getParent() == null) {
                 parent.setColor(Color.BLACK);
-                parent.getParent().getRight().setColor(Color.BLACK);
+                root = parent;
+                break;
+            }
+            
+            ColoredNode grandfather = parent.getParent();
+            ColoredNode uncle = findSibling(parent);
 
-                // alternate colors upwards
-                ColoredNode node = parent.getParent();
-                while (node.getParent() != null) {
-                    if (node.getColor() == Color.BLACK) {
-                        node.getParent().setColor(Color.RED);
-                    } else {
-                        node.getParent().setColor(Color.BLACK);
+            // if the uncle is black we handle the rotation cases and break the loop
+            if (uncle.getColor() == Color.BLACK) {
+                if (isLeftChild(parent)) {
+                    // handle right child
+                    if (!isLeftChild(child)) {
+                        leftRotation(parent);
                     }
+
+                    // swap colors and rotate grandfather
+                    grandfather.setColor(Color.RED);
+                    parent.setColor(Color.BLACK);
+                    rightRotation(grandfather);
+                } else {
+                    // handle left child
+                    if (isLeftChild(child)) {
+                        rightRotation(parent);
+                    }
+
+                    // swap colors and rotate grandfather
+                    grandfather.setColor(Color.RED);
+                    parent.setColor(Color.BLACK);
+                    leftRotation(grandfather);
                 }
+
+                if (parent.getParent() == null) root = parent;
+                if (child.getParent() == null) root = child;
+
+                break;
             } else {
-                // rotate grandparent
-                rightRotation(parent.getParent());
-
-                // swap colors of parent and grandparent
-                Color tmp = parent.getColor();
-                parent.setColor(parent.getParent().getColor());
-                parent.getParent().setColor(tmp);
-            }
-        } else {
-
-            if (rl) {
-                rightRotation(parent);
-            }
-
-            if (parent.getParent().getLeft() != NIL && parent.getParent().getLeft().getColor() == Color.RED) {
-                // set the parent's and uncle's colors to black and traverse upwards
+                // set colors of parent and uncle to black
+                uncle.setColor(Color.BLACK);
                 parent.setColor(Color.BLACK);
-                parent.getParent().getLeft().setColor(Color.BLACK);
 
-                // alternate colors upwards
-                ColoredNode node = parent.getParent();
-                while (node.getParent() != null) {
-                    if (node.getColor() == Color.BLACK) {
-                        node.getParent().setColor(Color.RED);
-                    } else {
-                        node.getParent().setColor(Color.BLACK);
-                    }
-                }
-            } else {
-                // rotate grandparent
-                leftRotation(parent.getParent());
-
-                // swap colors of parent and grandparent
-                Color tmp = parent.getColor();
-                parent.setColor(parent.getParent().getColor());
-                parent.getParent().setColor(tmp);
+                // move problem upwards
+                grandfather.setColor(Color.RED);
+                parent = grandfather.getParent();
             }
         }
 
@@ -141,7 +128,7 @@ public class RedBlackTree implements BSTInterface {
 
         }
 
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        return true;
     }
 
     private void deleteOneChild(ColoredNode target) {
@@ -310,7 +297,7 @@ public class RedBlackTree implements BSTInterface {
 
         // set the parent's left subtree to the child's right subtree
         parent.setLeft(child.getRight());
-        if (child.getRight() != null) {
+        if (child.getRight() != NIL) {
             child.getRight().setParent(parent);
         }
 
@@ -334,7 +321,7 @@ public class RedBlackTree implements BSTInterface {
 
         // set the parent's right subtree to the child's left subtree
         parent.setRight(child.getLeft());
-        if (child.getLeft() != null) {
+        if (child.getLeft() != NIL) {
             child.getLeft().setParent(parent);
         }
 

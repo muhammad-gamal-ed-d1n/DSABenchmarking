@@ -3,12 +3,47 @@
  */
 package dsabenchmarking;
 
+import java.util.Scanner;
+
+import dsabenchmarking.datastructures.BinarySearchTree;
+import dsabenchmarking.datastructures.RedBlackTree;
+import dsabenchmarking.printer.ASTPrinter;
+import dsabenchmarking.printer.BSTPrinter;
+import dsabenchmarking.printer.Printer;
+
 public class App {
     public String getGreeting() {
-        return "Hello World!";
+        return "hello";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Scanner scanner = new Scanner(System.in);
+        // RedBlackTree tree = new RedBlackTree();
+        BinarySearchTree tree = new BinarySearchTree();
+        // ASTPrinter printer = new ASTPrinter(tree.getNIL());
+        BSTPrinter printer = new BSTPrinter(null);
+
+        while (true) {
+            System.out.print("Input 'i'/'d': ");
+            String input = scanner.nextLine();
+
+            if ("i".equals(input)) {
+                System.out.print("Insert: ");
+                int v = scanner.nextInt();
+                scanner.nextLine();                
+                System.out.println();
+                tree.insert(v);
+                printer.printTree(tree.getRoot());
+            } else if ("d".equals(input)) {
+                System.out.print("Delete: ");
+                int v = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println();
+                tree.delete(v);
+                printer.printTree(tree.getRoot());
+            } else if ("exit".equals(input)) break;
+        }
+        
+        scanner.close();
     }
 }
