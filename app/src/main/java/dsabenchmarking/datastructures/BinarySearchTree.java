@@ -89,15 +89,10 @@ public class BinarySearchTree implements BSTInterface {
                 pred = curr;
                 curr = curr.getRight();
             }
-
-            if (isLeftChild(pred)) {
-                pred.getParent().setLeft(null);
-            } else {
-                pred.getParent().setRight(null);
-            }
-
-            toBeDeleted.setValue(pred.getValue());
-            pred = null;
+            
+            int value = pred.getValue();
+            delete(value);
+            toBeDeleted.setValue(value);
         }
 
         size--;

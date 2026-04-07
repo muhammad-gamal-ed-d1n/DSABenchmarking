@@ -11,6 +11,8 @@ import dsabenchmarking.printer.ASTPrinter;
 import dsabenchmarking.printer.BSTPrinter;
 import dsabenchmarking.printer.Printer;
 
+// issue with bst deletion and red black deletion. insertion is fine in both
+
 public class App {
     public String getGreeting() {
         return "hello";
@@ -29,10 +31,12 @@ public class App {
 
             if ("i".equals(input)) {
                 System.out.print("Insert: ");
-                int v = scanner.nextInt();
-                scanner.nextLine();                
+                input = scanner.nextLine();
+                String[] arr = input.split(" ");
+                for (String s: arr) {
+                    tree.insert(Integer.parseInt(s));
+                }
                 System.out.println();
-                tree.insert(v);
                 printer.printTree(tree.getRoot());
             } else if ("d".equals(input)) {
                 System.out.print("Delete: ");
