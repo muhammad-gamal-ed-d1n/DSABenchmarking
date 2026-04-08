@@ -9,9 +9,6 @@ import dsabenchmarking.datastructures.BinarySearchTree;
 import dsabenchmarking.datastructures.RedBlackTree;
 import dsabenchmarking.printer.ASTPrinter;
 import dsabenchmarking.printer.BSTPrinter;
-import dsabenchmarking.printer.Printer;
-
-// issue with bst deletion and red black deletion. insertion is fine in both
 
 public class App {
     public String getGreeting() {
@@ -20,10 +17,10 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        // RedBlackTree tree = new RedBlackTree();
-        BinarySearchTree tree = new BinarySearchTree();
-        // ASTPrinter printer = new ASTPrinter(tree.getNIL());
-        BSTPrinter printer = new BSTPrinter(null);
+        RedBlackTree tree = new RedBlackTree();
+        // BinarySearchTree tree = new BinarySearchTree();
+        ASTPrinter printer = new ASTPrinter(tree.getNIL());
+        // BSTPrinter printer = new BSTPrinter(null);
 
         while (true) {
             System.out.print("Input 'i'/'d': ");

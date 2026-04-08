@@ -41,7 +41,7 @@ public class RedBlackTree implements BSTInterface {
             } else if (curr.getValue() < v) {
                 curr = curr.getRight();
             } else {
-                //node already exists
+                // node already exists
                 return false;
             }
         }
@@ -55,18 +55,20 @@ public class RedBlackTree implements BSTInterface {
         }
 
         // if parent is black, then no violation, return
-        if (parent.getColor() == Color.BLACK) return true;
+        if (parent.getColor() == Color.BLACK)
+            return true;
 
-        while(true) {
+        while (true) {
 
             // handle some terminating conditions
-            if (parent == null) break;
+            if (parent == null)
+                break;
             if (parent.getParent() == null) {
                 parent.setColor(Color.BLACK);
                 root = parent;
                 break;
             }
-            
+
             ColoredNode grandfather = parent.getParent();
             ColoredNode uncle = findSibling(parent);
 
@@ -94,8 +96,10 @@ public class RedBlackTree implements BSTInterface {
                     leftRotation(grandfather);
                 }
 
-                if (parent.getParent() == null) root = parent;
-                if (child.getParent() == null) root = child;
+                if (parent.getParent() == null)
+                    root = parent;
+                if (child.getParent() == null)
+                    root = child;
 
                 break;
             } else {
@@ -125,7 +129,16 @@ public class RedBlackTree implements BSTInterface {
         if (target.getLeft() == NIL || target.getRight() == NIL) {
             deleteOneChild(target);
         } else {
+            // find predecessor
+            ColoredNode curr = target.getLeft(), pred = curr;
+            while (curr != NIL) {
+                pred = curr;
+                curr = curr.getRight();
+            }
 
+            int value = pred.getValue();
+            delete(value);
+            target.setValue(value);
         }
 
         return true;
@@ -134,12 +147,17 @@ public class RedBlackTree implements BSTInterface {
     private void deleteOneChild(ColoredNode target) {
         ColoredNode child = (target.getLeft() == NIL) ? target.getRight() : target.getLeft();
 
-        transplant(target, child);
+        // replace non null child
+        replaceNode(target, child);
+        if (child.getParent() == null)
+            root = child;
 
+        // check if node is black, if true check if child is red
         if (target.getColor() == Color.BLACK) {
+            // if child is red, simple case just recolor
             if (child.getColor() == Color.RED) {
                 child.setColor(Color.BLACK);
-            } else {
+            } else { // else we must correct the violation
                 deleteCaseOne(child);
             }
         }
@@ -148,7 +166,6 @@ public class RedBlackTree implements BSTInterface {
     private void deleteCaseOne(ColoredNode doubleBlackNode) {
         if (doubleBlackNode == root) {
             doubleBlackNode.setColor(Color.BLACK);
-
             return;
         }
 
@@ -157,17 +174,26 @@ public class RedBlackTree implements BSTInterface {
 
     private void deleteCaseTwo(ColoredNode doubleBlackNode) {
         ColoredNode sibling = findSibling(doubleBlackNode);
+        ColoredNode parent = doubleBlackNode.getParent();
 
-        if(isLeftChild(sibling)) {
-            rightRotation(doubleBlackNode.getParent());
-        } else {
-            leftRotation(doubleBlackNode.getParent());
-        }
+        if (parent.getColor() == Color.BLACK
+                && sibling.getColor() == Color.RED
+                && sibling.getLeft().getColor() == Color.BLACK
+                && sibling.getRight().getColor() == Color.BLACK
+            ) {
+            if (isLeftChild(sibling)) {
+                rightRotation(parent);
+            } else {
+                leftRotation(parent);
+            }
 
-        if (sibling.getParent() == null) {
-            root = sibling;
+            if (sibling.getParent() == null) {
+                root = sibling;
+            }
+
+            sibling.setColor(Color.BLACK);
+            parent.setColor(Color.RED);
         }
-        
         deleteCaseThree(doubleBlackNode);
     }
 
@@ -175,11 +201,11 @@ public class RedBlackTree implements BSTInterface {
         ColoredNode sibling = findSibling(doubleBlackNode);
         ColoredNode parent = doubleBlackNode.getParent();
 
-        if(parent.getColor() == Color.BLACK
+        if (parent.getColor() == Color.BLACK
             && sibling.getColor() == Color.BLACK
             && sibling.getLeft().getColor() == Color.BLACK
             && sibling.getRight().getColor() == Color.BLACK
-        ) {
+            ) {
             sibling.setColor(Color.RED);
             deleteCaseOne(parent);
         } else {
@@ -191,12 +217,10 @@ public class RedBlackTree implements BSTInterface {
         ColoredNode sibling = findSibling(doubleBlackNode);
         ColoredNode parent = doubleBlackNode.getParent();
 
-        if (
-            parent.getColor() == Color.RED
-            && sibling.getColor() == Color.BLACK
-            && sibling.getLeft().getColor() == Color.BLACK
-            && sibling.getRight().getColor() == Color.BLACK
-        ) {
+        if (parent.getColor() == Color.RED
+                && sibling.getColor() == Color.BLACK
+                && sibling.getLeft().getColor() == Color.BLACK
+                && sibling.getRight().getColor() == Color.BLACK) {
             sibling.setColor(Color.RED);
             parent.setColor(Color.BLACK);
             return;
@@ -207,24 +231,19 @@ public class RedBlackTree implements BSTInterface {
 
     private void deleteCaseFive(ColoredNode doubleBlackNode) {
         ColoredNode sibling = findSibling(doubleBlackNode);
-        
-        if (
-            isLeftChild(sibling)
-            && sibling.getColor() == Color.BLACK
-            && sibling.getLeft().getColor() == Color.RED
-            && sibling.getRight().getColor() == Color.BLACK
-        ) {
+
+        if (isLeftChild(sibling)
+                && sibling.getColor() == Color.BLACK
+                && sibling.getLeft().getColor() == Color.RED
+                && sibling.getRight().getColor() == Color.BLACK) {
             sibling.getLeft().setColor(Color.BLACK);
             sibling.setColor(Color.RED);
             rightRotation(sibling);
-            
-        }
-        else if (
-            !isLeftChild(sibling)
-            && sibling.getColor() == Color.BLACK
-            && sibling.getLeft().getColor() == Color.BLACK
-            && sibling.getRight().getColor() == Color.RED
-        ) {
+
+        } else if (!isLeftChild(sibling)
+                && sibling.getColor() == Color.BLACK
+                && sibling.getLeft().getColor() == Color.BLACK
+                && sibling.getRight().getColor() == Color.RED) {
             sibling.getRight().setColor(Color.BLACK);
             sibling.setColor(Color.RED);
             leftRotation(sibling);
@@ -237,7 +256,7 @@ public class RedBlackTree implements BSTInterface {
         ColoredNode sibling = findSibling(doubleBlackNode);
         ColoredNode parent = doubleBlackNode.getParent();
 
-        if(isLeftChild(doubleBlackNode)) {
+        if (isLeftChild(doubleBlackNode)) {
             sibling.setColor(parent.getColor());
             sibling.getRight().setColor(Color.BLACK);
             parent.setColor(Color.BLACK);
@@ -249,7 +268,7 @@ public class RedBlackTree implements BSTInterface {
             rightRotation(parent);
         }
 
-        if(sibling.getParent() == null) {
+        if (sibling.getParent() == null) {
             root = sibling;
         }
     }
@@ -341,7 +360,7 @@ public class RedBlackTree implements BSTInterface {
     }
 
     private ColoredNode search(ColoredNode curr, int value) {
-        if (curr == null)
+        if (curr == NIL)
             return curr;
 
         if (curr.getValue() > value) {
@@ -356,7 +375,7 @@ public class RedBlackTree implements BSTInterface {
     private ColoredNode getMinimum(ColoredNode node) {
         ColoredNode min = node;
 
-        while (node != null) {
+        while (node != NIL) {
             min = node;
             node = node.getLeft();
         }
@@ -382,5 +401,20 @@ public class RedBlackTree implements BSTInterface {
         } else {
             b.setRight(a.getLeft());
         }
+    }
+
+    public void replaceNode(ColoredNode toBeReplaced, ColoredNode child) {
+        ColoredNode parent = toBeReplaced.getParent();
+
+        if (parent == null) {
+            root = child;
+        } else {
+            if (isLeftChild(toBeReplaced)) {
+                parent.setLeft(child);
+            } else {
+                parent.setRight(child);
+            }
+        }
+        child.setParent(parent);
     }
 }
