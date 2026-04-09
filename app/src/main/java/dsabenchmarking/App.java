@@ -1,31 +1,32 @@
 package dsabenchmarking;
 
-
 import dsabenchmarking.datastructures.BinarySearchTree;
 import dsabenchmarking.datastructures.RedBlackTree;
 import dsabenchmarking.services.Generator;
+import dsabenchmarking.services.ValidateBST;
+import dsabenchmarking.services.ValidateRBT;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class App {
-    public String getGreeting() {
-        return "hello";
-    }
 
     // public static void main(String[] args) {
-    //     RedBlackTree tree = new RedBlackTree();
-    //     ASTPrinter printer = new ASTPrinter(tree.getNIL());
-    //     for (int i = 0; i < 10; i++) {
-    //         tree.insert(i);
-    //     }
-    //     printer.printTree(tree.getRoot());
-    //     System.out.println(tree.height());
-    //     int[] res = tree.inOrder();
-    //     System.out.println(Arrays.toString(res));
+    // RedBlackTree tree = new RedBlackTree();
+    // ASTPrinter printer = new ASTPrinter(tree.getNIL());
+    // for (int i = 0; i < 10; i++) {
+    // tree.insert(i);
+    // }
+    // printer.printTree(tree.getRoot());
+    // System.out.println(tree.height());
+    // int[] res = tree.inOrder();
+    // System.out.println(Arrays.toString(res));
     // }
 
     public static void main(String[] args) {
         int n = 100000;
+
+        ValidateBST.VALIDATE = true;
+        ValidateRBT.VALIDATE = true;
 
         int[] random = Generator.generateArray(n);
         int[] nearlySorted1 = Generator.generateArray(n, 1);
@@ -66,13 +67,17 @@ public class App {
 
             // -------- INSERT --------
             rbtInsertTimes[run] = time(() -> {
-                for (int v : input)
+                for (int v : input) {
                     rbt.insert(v);
+                }
+                ValidateRBT.validateRBT(rbt);
             });
 
             bstInsertTimes[run] = time(() -> {
-                for (int v : input)
+                for (int v : input) {
                     bst.insert(v);
+                }
+                ValidateBST.validateBST(bst);
             });
 
             if (run == runs - 1) {
@@ -109,27 +114,35 @@ public class App {
             }
 
             rbtDeleteTimes[run] = time(() -> {
-                for (int v : toDelete)
+                for (int v : toDelete) {
                     rbt.delete(v);
+                }
+                // ValidateRBT.validateRBT(rbt);
             });
 
             bstDeleteTimes[run] = time(() -> {
-                for (int v : toDelete)
+                for (int v : toDelete) {
                     bst.delete(v);
+                }
+                ValidateBST.validateBST(bst);
             });
 
             // -------- TREE SORT --------
             rbtSortTimes[run] = time(() -> {
                 RedBlackTree t = new RedBlackTree();
-                for (int v : input)
+                for (int v : input) {
                     t.insert(v);
+                }
+                // ValidateRBT.validateRBT(t);
                 t.inOrder();
             });
 
             bstSortTimes[run] = time(() -> {
                 BinarySearchTree t = new BinarySearchTree();
-                for (int v : input)
+                for (int v : input) {
                     t.insert(v);
+                }
+                ValidateBST.validateBST(t);
                 t.inOrder();
             });
         }

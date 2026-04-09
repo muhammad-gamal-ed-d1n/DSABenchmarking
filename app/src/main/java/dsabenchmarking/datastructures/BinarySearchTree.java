@@ -59,6 +59,7 @@ public class BinarySearchTree implements BSTInterface {
         if (size == 1) {
             root = null;
             size--;
+            return true;
         }
 
         Node parent = toBeDeleted.getParent();
@@ -73,6 +74,9 @@ public class BinarySearchTree implements BSTInterface {
             }
             if (child != null)
                 child.setParent(parent);
+            if (toBeDeleted == root) {
+                root = child;
+            }
         } else if (toBeDeleted.getRight() == null) {
             Node child = toBeDeleted.getLeft();
             if (parent != null) {
@@ -84,6 +88,10 @@ public class BinarySearchTree implements BSTInterface {
             }
             if (child != null)
                 child.setParent(parent);
+
+            if (toBeDeleted == root) {
+                root = child;
+            }
         } else {
             // we find the maximum node in the left subtree (inorder predecessor)
             Node curr = toBeDeleted.getLeft(), pred = toBeDeleted.getLeft();
@@ -93,8 +101,26 @@ public class BinarySearchTree implements BSTInterface {
             }
 
             int value = pred.getValue();
-            delete(value);
             toBeDeleted.setValue(value);
+
+            // delete predecessor
+            if (pred.getLeft() != null) {
+                Node predParent = pred.getParent();
+                if (isLeftChild(pred)) {
+                    pred = null;
+                } else {
+                    predParent.setRight(pred.getLeft());
+                    if (pred.getLeft() != null) {
+                        pred.getLeft().setParent(predParent);
+                    }
+                }
+            } else {
+                if (isLeftChild(pred)) {
+                    pred.getParent().setLeft(null);
+                } else {
+                    pred.getParent().setRight(null);
+                }
+            }
         }
 
         size--;
