@@ -13,7 +13,7 @@ public class ValidateRBT {
 
         isBST(tree.getRoot(), Integer.MIN_VALUE, Integer.MAX_VALUE, tree.getNIL());
         checkNode(tree.getRoot(), tree.getNIL());
-        // computeBlackHeight(tree.getRoot(), tree.getNIL());
+        computeBlackHeight(tree.getRoot(), tree.getNIL());
     }
 
     private static boolean isBST(ColoredNode node, int min, int max, ColoredNode NIL) {

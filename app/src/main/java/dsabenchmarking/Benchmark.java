@@ -8,7 +8,7 @@ import dsabenchmarking.services.ValidateRBT;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class App {
+public class Benchmark {
 
     // public static void main(String[] args) {
     // RedBlackTree tree = new RedBlackTree();
@@ -25,8 +25,8 @@ public class App {
     public static void main(String[] args) {
         int n = 100000;
 
-        ValidateBST.VALIDATE = true;
-        ValidateRBT.VALIDATE = true;
+        ValidateBST.VALIDATE = false;
+        ValidateRBT.VALIDATE = false;
 
         int[] random = Generator.generateArray(n);
         int[] nearlySorted1 = Generator.generateArray(n, 1);
@@ -117,7 +117,7 @@ public class App {
                 for (int v : toDelete) {
                     rbt.delete(v);
                 }
-                // ValidateRBT.validateRBT(rbt);
+                ValidateRBT.validateRBT(rbt);
             });
 
             bstDeleteTimes[run] = time(() -> {
@@ -133,7 +133,7 @@ public class App {
                 for (int v : input) {
                     t.insert(v);
                 }
-                // ValidateRBT.validateRBT(t);
+                ValidateRBT.validateRBT(t);
                 t.inOrder();
             });
 

@@ -107,7 +107,10 @@ public class BinarySearchTree implements BSTInterface {
             if (pred.getLeft() != null) {
                 Node predParent = pred.getParent();
                 if (isLeftChild(pred)) {
-                    pred = null;
+                    predParent.setLeft(pred.getLeft());
+                    if (pred.getLeft() != null) {
+                        pred.getLeft().setParent(predParent);
+                    }
                 } else {
                     predParent.setRight(pred.getLeft());
                     if (pred.getLeft() != null) {
@@ -155,12 +158,13 @@ public class BinarySearchTree implements BSTInterface {
         return array.stream().mapToInt(i -> i).toArray();
     }
 
-    private void inOrderHelper(Node root, List<Integer> array) {
-        if (root == null) return;
+    private void inOrderHelper(Node node, List<Integer> array) {
+        if (node == null)
+            return;
 
-        inOrderHelper(root.getLeft(), array);
-        array.add(root.getValue());
-        inOrderHelper(root.getRight(), array);
+        inOrderHelper(node.getLeft(), array);
+        array.add(node.getValue());
+        inOrderHelper(node.getRight(), array);
 
         return;
     }
