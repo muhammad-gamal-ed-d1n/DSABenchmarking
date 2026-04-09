@@ -71,7 +71,8 @@ public class BinarySearchTree implements BSTInterface {
                     parent.setRight(child);
                 }
             }
-            if (child != null) child.setParent(parent);
+            if (child != null)
+                child.setParent(parent);
         } else if (toBeDeleted.getRight() == null) {
             Node child = toBeDeleted.getLeft();
             if (parent != null) {
@@ -81,7 +82,8 @@ public class BinarySearchTree implements BSTInterface {
                     parent.setRight(child);
                 }
             }
-            if (child != null) child.setParent(parent);
+            if (child != null)
+                child.setParent(parent);
         } else {
             // we find the maximum node in the left subtree (inorder predecessor)
             Node curr = toBeDeleted.getLeft(), pred = toBeDeleted.getLeft();
@@ -89,7 +91,7 @@ public class BinarySearchTree implements BSTInterface {
                 pred = curr;
                 curr = curr.getRight();
             }
-            
+
             int value = pred.getValue();
             delete(value);
             toBeDeleted.setValue(value);
@@ -122,25 +124,34 @@ public class BinarySearchTree implements BSTInterface {
 
     @Override
     public int[] inOrder() {
-        List<Integer> inOrder = new ArrayList<>();
-        Node curr = root;
-        return inOrderHelper(curr, inOrder);
+        List<Integer> array = new ArrayList<>();
+        inOrderHelper(root, array);
+        return array.stream().mapToInt(i -> i).toArray();
     }
 
-    private int[] inOrderHelper(Node root, List<Integer> inOrder) {
-        if (root == null) return inOrder();
+    private void inOrderHelper(Node root, List<Integer> array) {
+        if (root == null) return;
 
-        inOrder.add(root.getValue());
-        inOrderHelper(root.getLeft(), inOrder);
-        inOrderHelper(root.getRight(), inOrder);
+        inOrderHelper(root.getLeft(), array);
+        array.add(root.getValue());
+        inOrderHelper(root.getRight(), array);
 
-        return inOrder();
+        return;
     }
 
     @Override
     public int height() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'height'");
+        return heightHelper(root);
+    }
+
+    private int heightHelper(Node node) {
+        if (node == null)
+            return -1;
+
+        int left = heightHelper(node.getLeft());
+        int right = heightHelper(node.getRight());
+
+        return Math.max(left, right) + 1;
     }
 
     @Override

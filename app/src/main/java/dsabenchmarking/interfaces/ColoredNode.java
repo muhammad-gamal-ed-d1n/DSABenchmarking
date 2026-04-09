@@ -1,9 +1,7 @@
 package dsabenchmarking.interfaces;
 
 import dsabenchmarking.enumeration.Color;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter

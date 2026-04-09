@@ -1,5 +1,8 @@
 package dsabenchmarking.datastructures;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dsabenchmarking.enumeration.Color;
 import dsabenchmarking.interfaces.BSTInterface;
 import dsabenchmarking.interfaces.ColoredNode;
@@ -12,6 +15,9 @@ public class RedBlackTree implements BSTInterface {
 
     public RedBlackTree() {
         NIL = new RBNode(null, null, null, 0, Color.BLACK);
+        NIL.setLeft(NIL);
+        NIL.setRight(NIL);
+        NIL.setParent(NIL);
         this.root = NIL;
         this.n = 0;
     }
@@ -114,7 +120,7 @@ public class RedBlackTree implements BSTInterface {
         }
 
         root.setColor(Color.BLACK);
-
+        n++;
         return true;
     }
 
@@ -141,6 +147,7 @@ public class RedBlackTree implements BSTInterface {
             target.setValue(value);
         }
 
+        n--;
         return true;
     }
 
@@ -289,26 +296,43 @@ public class RedBlackTree implements BSTInterface {
 
     @Override
     public boolean contains(int v) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+        return search(root, v) != NIL;
     }
 
     @Override
     public int[] inOrder() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inOrder'");
+        List<Integer> array = new ArrayList<>();
+        inOrderHelper(root, array);
+        return array.stream().mapToInt(i -> i).toArray();
+    }
+
+    private void inOrderHelper(ColoredNode root, List<Integer> array) {
+        if (root == NIL) return;
+
+        inOrderHelper(root.getLeft(), array);
+        array.add(root.getValue());
+        inOrderHelper(root.getRight(), array);
+
+        return;
     }
 
     @Override
     public int height() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'height'");
+        return heightHelper(root);
+    }
+
+    private int heightHelper(ColoredNode node) {
+        if (node == NIL) return -1;
+
+        int left = heightHelper(node.getLeft());
+        int right = heightHelper(node.getRight());
+
+        return Math.max(left, right) + 1;
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+       return n;
     }
 
     private void rightRotation(ColoredNode parent) {
@@ -381,26 +405,6 @@ public class RedBlackTree implements BSTInterface {
         }
 
         return min;
-    }
-
-    private void transplant(ColoredNode a, ColoredNode b) {
-        if (a.getParent() == null) {
-            root = b;
-        } else {
-            b.setParent(a.getParent());
-
-            if (a.getParent().getLeft() == a) {
-                a.getParent().setLeft(b);
-            } else {
-                a.getParent().setRight(b);
-            }
-        }
-
-        if (a.getLeft() == b) {
-            b.setRight(a.getRight());
-        } else {
-            b.setRight(a.getLeft());
-        }
     }
 
     public void replaceNode(ColoredNode toBeReplaced, ColoredNode child) {
