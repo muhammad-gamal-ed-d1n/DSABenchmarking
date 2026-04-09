@@ -1,0 +1,144 @@
+22:23:15.045 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:15.050 [main] WARN  dsabenchmarking.Benchmark - Fully Random
+22:23:15.052 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:15.878 [main] WARN  dsabenchmarking.Benchmark - --- Insert ---
+22:23:15.878 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 28.461869800000002 ms
+22:23:15.878 [main] WARN  dsabenchmarking.Benchmark - BST mean: 24.1887488 ms
+22:23:15.878 [main] WARN  dsabenchmarking.Benchmark - RBT median: 22.267606 ms
+22:23:15.878 [main] WARN  dsabenchmarking.Benchmark - BST median: 25.818262 ms
+22:23:15.878 [main] WARN  dsabenchmarking.Benchmark - RBT std: 13.47417426146988 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - BST std: 5.089645845839822 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 0.849865064030333
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - Heights → RBT: 19 | BST: 42
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - --- Contains ---
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 12.1731576 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - BST mean: 10.127659 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - RBT median: 11.313491 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - BST median: 9.385779 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - RBT std: 1.792104064860922 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.4939071691843506 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 0.8319664735138236
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - --- Delete ---
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 8.8360472 ms
+22:23:15.879 [main] WARN  dsabenchmarking.Benchmark - BST mean: 6.0989546 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - RBT median: 8.563634 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - BST median: 5.816586 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - RBT std: 1.9567500681914796 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.309185939340566 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 0.6902356293434014
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - --- Tree Sort ---
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 37.733081399999996 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - BST mean: 28.1106992 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - RBT median: 38.89688 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - BST median: 29.274147 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - RBT std: 7.86778329304786 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - BST std: 6.028280070213241 ms
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 0.7449881683927356
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - Nearly Sorted (1%)
+22:23:15.880 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - --- Insert ---
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 10.1753268 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - BST mean: 102.7636998 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - RBT median: 10.28155 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - BST median: 103.299889 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - RBT std: 1.0193561579856965 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.6457929251058774 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 10.099302147229315
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - Heights → RBT: 29 | BST: 3874
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - --- Contains ---
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 5.4152157999999995 ms
+22:23:17.638 [main] WARN  dsabenchmarking.Benchmark - BST mean: 112.795312 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT median: 5.408086 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST median: 111.784408 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.07946404150154962 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.5975242848904676 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 20.829329091557163
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - --- Delete ---
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 1.9459536000000002 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST mean: 2.2078054 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT median: 1.668373 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST median: 2.037038 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.5507777397508364 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.4730909954461615 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 1.1345622012775638
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - --- Tree Sort ---
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 12.3752126 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST mean: 103.1842092 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT median: 12.937506 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST median: 103.53947 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - RBT std: 1.3439949009325294 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.6733048215824156 ms
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 8.337974670431118
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:17.639 [main] WARN  dsabenchmarking.Benchmark - Nearly Sorted (5%)
+22:23:17.640 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:18.261 [main] WARN  dsabenchmarking.Benchmark - --- Insert ---
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 10.410825599999999 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST mean: 28.52332 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT median: 10.384728 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST median: 27.85721 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.18632052148338357 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.0000276762836118 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 2.739775028024675
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - Heights → RBT: 29 | BST: 1671
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - --- Contains ---
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 6.6473866 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST mean: 29.918073600000003 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT median: 6.898478 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST median: 29.923505 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.33216925146533355 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.0629433377557943 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 4.50072718803507
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - --- Delete ---
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 2.5666656 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST mean: 2.7093564 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT median: 2.621311 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - BST median: 2.705977 ms
+22:23:18.262 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.11559204511314781 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.06033626753984705 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 1.0555938412857522
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - --- Tree Sort ---
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 13.6508822 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - BST mean: 29.263065 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - RBT median: 12.348432 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - BST median: 29.228573 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - RBT std: 2.6754316108696483 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.3426829051149181 ms
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 2.143675739872695
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - Nearly Sorted (10%)
+22:23:18.263 [main] WARN  dsabenchmarking.Benchmark - ===============================
+22:23:18.714 [main] WARN  dsabenchmarking.Benchmark - --- Insert ---
+22:23:18.714 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 11.226381400000001 ms
+22:23:18.714 [main] WARN  dsabenchmarking.Benchmark - BST mean: 16.427289599999998 ms
+22:23:18.714 [main] WARN  dsabenchmarking.Benchmark - RBT median: 11.227983 ms
+22:23:18.714 [main] WARN  dsabenchmarking.Benchmark - BST median: 16.427627 ms
+22:23:18.714 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.08504087836705357 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.21683650688903844 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 1.4632755662479096
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - Heights → RBT: 28 | BST: 1361
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - --- Contains ---
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 6.8872174 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST mean: 15.544571 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT median: 6.654373 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST median: 15.312676 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.31702577947706395 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.43067954033503847 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 2.257017616432436
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - --- Delete ---
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 3.148177 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST mean: 3.4066823999999998 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT median: 3.04318 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST median: 3.311561 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.1866281715958231 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST std: 0.1759795061518244 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 1.0821127274610036
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - --- Tree Sort ---
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - RBT mean: 13.6315572 ms
+22:23:18.715 [main] WARN  dsabenchmarking.Benchmark - BST mean: 19.121242 ms
+22:23:18.716 [main] WARN  dsabenchmarking.Benchmark - RBT median: 13.624197 ms
+22:23:18.716 [main] WARN  dsabenchmarking.Benchmark - BST median: 18.22824 ms
+22:23:18.716 [main] WARN  dsabenchmarking.Benchmark - RBT std: 0.1971109628431661 ms
+22:23:18.716 [main] WARN  dsabenchmarking.Benchmark - BST std: 1.9187854439581304 ms
+22:23:18.716 [main] WARN  dsabenchmarking.Benchmark - Speedup (BST / RBT): 1.4027188324456432
